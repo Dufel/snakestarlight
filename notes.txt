@@ -1,0 +1,51 @@
+
+
+Snake game
+	- need to reduce the game to discrete steps (frames)
+		- rather than a continuous flow
+	- it has three actors
+		- the head of the snake
+			- controls movement, initiates contact with ball
+			- determines where body spawns
+		- the sprite
+			- spawn at a new spot as its eaten
+				- can't spawn on a current body tile
+			- dissappears upon contact with snake
+			- increments score
+		- the body of the snake  
+			- grows with each pellet consumption
+			- the tail is deleted per frame
+			- collission with the head causes failure
+	- game screen can be divided into a grid, with three states
+		- empty
+		- snake
+		- pellet
+	
+	
+Grid Manager
+	- maintains state of each cell of the game grid 
+	- on each step of the game, determine where the head is currently
+		- if on a pellet
+			- delete pellet 
+			- create a "body" where the tail of the snake was in the previous frame
+		- if on a body 
+			- set to game failure 
+		- delete the "tail" of the snake
+			- 
+	- Grid is made of Cell objects
+		- cell positions are maintained by each actor
+		- Grid contains state of each cell for rendering
+	
+		
+			
+Game Screen
+	- main game logic
+	- transfers to other screens
+	
+Pause screen (also pause screen?)
+	- key to close
+	- if pause is clicked, game is paused with pause overlay
+	
+Game over screen
+	- if head hits body 
+	- or rare case that a new pellet can't spawn
