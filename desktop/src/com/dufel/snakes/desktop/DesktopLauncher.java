@@ -7,6 +7,8 @@ import com.dufel.snakes.SnakeStarlightGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new SnakeStarlightGame(), config);
+		config.width = 570;
+		config.height = 600;
+		new LwjglApplication( new SnakeStarlightGame(), config );
 	}
 }

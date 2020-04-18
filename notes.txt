@@ -36,6 +36,10 @@ Grid Manager
 		- cell positions are maintained by each actor
 		- Grid contains state of each cell for rendering
 	
+
+Initialization
+	- Snake should start in same location
+	- pellet should be randomized
 		
 			
 Game Screen
