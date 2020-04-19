@@ -13,6 +13,7 @@ public class Snake {
         o_cells = new Queue<>();
         o_cells.addFirst( new Cell( 2, 7 ) );
         o_cells.addLast( new Cell( 1, 7 ) );
+        o_cells.addLast( new Cell( 0, 7 ) );
     }
 
     public void update() {
@@ -21,15 +22,18 @@ public class Snake {
 
     public void render( SpriteBatch vo_batch ) {
 
-        Cell o_head = o_cells.first();
-        Cell o_tail = o_cells.last();
+        Cell o_head = o_cells.removeFirst();
+        Cell o_tail = o_cells.removeLast();
 
         o_head.render( vo_batch, AssetManager.o_manager.o_horse_head );
         o_tail.render( vo_batch, AssetManager.o_manager.o_horse_tail );
 
         // Draw rest of the body here, excluding head and tail if necessary
-//        for ( Cell o_cell : o_cells ) {
-//            o_cell.render( vo_batch, AssetManager.o_manager.o_horse_body );
-//        }
+        for ( Cell o_cell : o_cells ) {
+            o_cell.render( vo_batch, AssetManager.o_manager.o_horse_body );
+        }
+
+        o_cells.addFirst( o_head );
+        o_cells.addLast( o_tail );
     }
 }

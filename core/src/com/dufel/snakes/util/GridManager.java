@@ -22,7 +22,12 @@ public class GridManager {
 
         for ( int i = 0; i < 15; i++ ) {
             for ( int j = 0; j < 15; j++ ) {
-                o_grid.add( new Cell( j, i ) );
+
+                if ( ( i + j ) % 2 == 0 ) {
+                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_tile_b ) );
+                } else {
+                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_tile_a ) );
+                }
             }
         }
     }
@@ -42,7 +47,7 @@ public class GridManager {
     public void render( SpriteBatch vo_batch ) {
 
         for ( Cell o_cell : o_grid ) {
-            o_cell.render( vo_batch, AssetManager.o_manager.o_tex );
+            o_cell.render( vo_batch );
         }
 
         o_snake.render( vo_batch );
