@@ -34,9 +34,12 @@ public class GridManager {
 
     /**
      * This will be called on each discrete frame of the game's timeline.
-     * It will perform collision checks between each actor, and update the
+     * It will perform collision checks between each actor, and update the snake's position.
+     * @param vo_direction the direction of movement
      */
-    public void update() {
+    public void update( Direction vo_direction ) {
+        
+        o_snake.update( vo_direction );
 
     }
 
