@@ -12,6 +12,8 @@ public class GridManager {
     public Pellet o_pellet;
 
     public Array<Cell> o_grid;
+    
+    final int 
 
     public GridManager() {
 
@@ -40,7 +42,36 @@ public class GridManager {
     public void update( Direction vo_direction ) {
         
         o_snake.update( vo_direction );
+        
+        o_snake.collidesWith( o_pellet.o_cell );     
+        
+        
 
+    }
+    
+    /**
+     * Check if the snake is meeting the conditions for a game-over.
+     * @return true if game is over, else false
+     */
+    public boolean checkForGameOver() {
+        
+        Cell o_head = o_snake.o_cells.removeFirst();
+        
+        // Check if snake is beyond boundaries of the map
+        if ( o_head.n_col < 0 || o_head.n_row < 0 || o_head.n_col > 14 || o_head.n_row > 14 ) {
+        
+            return true;
+        
+        } 
+        
+        for ( Cell o_cell : o_snake.o_cells ) {
+            
+            if ( o_head.n_col == o_cell.n_col && o_head.n_row == o_cell.n_row ) {
+                return true;
+            }                
+        }
+        
+        return false;
     }
 
     /**
