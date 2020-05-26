@@ -8,19 +8,23 @@ import com.dufel.snakes.util.Direction;
 public class Snake {
 
     public Queue<Cell> o_cells;
+    
+    private Direction o_prev_direction;
 
     public Snake() {
         
         o_cells = new Queue<>();
         
         // Starting positions
-        o_cells.addFirst( new Cell( 2, 7 ) );
-        o_cells.addLast( new Cell( 1, 7 ) );
-        o_cells.addLast( new Cell( 0, 7 ) );
+        o_prev_direction = Direction.RIGHT;
+        
+        o_cells.addFirst( new Cell( 2, 7, AssetManager.o_manager.o_horse_head ) );
+        o_cells.addLast( new Cell( 1, 7, AssetManager.o_manager.o_horse_body ) );
+        o_cells.addLast( new Cell( 0, 7, AssetManager.o_manager.o_horse_tail ) );
     
     }
 
-    public void update( Direction vo_direction ) {
+    public void update( Direction vo_direction, boolean vb_expand ) {
         
         Cell o_head = o_cells.first();
         
@@ -28,24 +32,70 @@ public class Snake {
         switch ( vo_direction ) {
             
             case UP :
+                
                 o_new_head.n_row++;
+                
+                switch ( o_prev_direction ) {
+                    
+                    // Set texture for the old head
+                    case UP : 
+                        
+                        break;
+                        
+                    case DOWN :
+                        
+                        break;
+                        
+                    case LEFT :
+                        
+                        break;
+                        
+                    case RIGHT : 
+                        
+                        break;
+                    
+                }
                 break;
                 
             case DOWN : 
+                
                 o_new_head.n_row--;
+                
+                switch ( o_prev_direction ) {
+                    
+                    
+                    
+                }
                 break;
                 
             case LEFT :
+                
                 o_new_head.n_col--;
+                
+                switch ( o_prev_direction ) {
+                    
+                    
+                    
+                }
                 break;
                 
             case RIGHT :
+                
                 o_new_head.n_col++;
+                
+                switch ( o_prev_direction ) {
+                    
+                    
+                    
+                }
                 break;
         }
         
         o_cells.addFirst( o_new_head );
-        o_cells.removeLast();
+        
+        if ( !vb_expand ) {
+            o_cells.removeLast();
+        }
 
     }
 
@@ -54,12 +104,12 @@ public class Snake {
         Cell o_head = o_cells.removeFirst();
         Cell o_tail = o_cells.removeLast();
 
-        o_head.render( vo_batch, AssetManager.o_manager.o_horse_head );
-        o_tail.render( vo_batch, AssetManager.o_manager.o_horse_tail );
+        o_head.render( vo_batch );
+        o_tail.render( vo_batch );
 
         // Draw rest of the body here, excluding head and tail if necessary
         for ( Cell o_cell : o_cells ) {
-            o_cell.render( vo_batch, AssetManager.o_manager.o_horse_body );
+            o_cell.render( vo_batch );
         }
 
         o_cells.addFirst( o_head );

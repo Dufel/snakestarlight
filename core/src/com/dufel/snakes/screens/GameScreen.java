@@ -51,18 +51,22 @@ public class GameScreen extends ScreenAdapter {
                 switch ( keycode ) {
 
                     case Input.Keys.LEFT :
+                    case Input.Keys.A :
                         o_direction = Direction.LEFT;
                         break;
 
                     case Input.Keys.RIGHT :
+                    case Input.Keys.D :
                         o_direction = Direction.RIGHT;
                         break;
 
                     case Input.Keys.DOWN :
+                    case Input.Keys.S :
                         o_direction = Direction.DOWN;
                         break;
 
                     case Input.Keys.UP :
+                    case Input.Keys.W :
                         o_direction = Direction.UP;
                         break;
                 }
@@ -90,6 +94,9 @@ public class GameScreen extends ScreenAdapter {
         } 
         
         // Update for animation purposes
+        if ( o_grid.checkForGameOver() ) {
+            o_game.setScreen( new GameOverScreen( o_game ) );
+        }
         
     }
 

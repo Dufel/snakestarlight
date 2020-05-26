@@ -11,14 +11,15 @@ public class GridManager {
     public Snake o_snake;
     public Pellet o_pellet;
 
-    public Array<Cell> o_grid;
+    public Array<Cell> o_grid;    
     
-    final int 
+    public int n_grid_size;
 
     public GridManager() {
 
         o_snake = new Snake();
         o_pellet = new Pellet();
+        n_grid_size = 14;
 
         o_grid = new Array<>( 30 );
 
@@ -41,12 +42,13 @@ public class GridManager {
      */
     public void update( Direction vo_direction ) {
         
-        o_snake.update( vo_direction );
+        boolean b_expand = o_snake.collidesWith( o_pellet.o_cell );
         
-        o_snake.collidesWith( o_pellet.o_cell );     
+        o_snake.update( vo_direction, b_expand );
         
-        
-
+        if ( b_expand ) {
+            o_pellet.update( o_grid, o_snake.o_cells );
+        }
     }
     
     /**
@@ -58,7 +60,7 @@ public class GridManager {
         Cell o_head = o_snake.o_cells.removeFirst();
         
         // Check if snake is beyond boundaries of the map
-        if ( o_head.n_col < 0 || o_head.n_row < 0 || o_head.n_col > 14 || o_head.n_row > 14 ) {
+        if ( o_head.n_col < 0 || o_head.n_row < 0 || o_head.n_col > n_grid_size || o_head.n_row > n_grid_size ) {
         
             return true;
         
@@ -84,6 +86,7 @@ public class GridManager {
             o_cell.render( vo_batch );
         }
 
+        o_pellet.render( vo_batch );
         o_snake.render( vo_batch );
     }
 
