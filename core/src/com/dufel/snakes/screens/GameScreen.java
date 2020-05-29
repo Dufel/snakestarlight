@@ -52,22 +52,34 @@ public class GameScreen extends ScreenAdapter {
 
                     case Input.Keys.LEFT :
                     case Input.Keys.A :
-                        o_direction = Direction.LEFT;
+                        
+                        if ( o_grid.getCurrentDirection() != Direction.RIGHT ) {
+                            o_direction = Direction.LEFT;
+                        }
                         break;
 
                     case Input.Keys.RIGHT :
                     case Input.Keys.D :
-                        o_direction = Direction.RIGHT;
+                        
+                        if ( o_grid.getCurrentDirection() != Direction.LEFT ) {
+                            o_direction = Direction.RIGHT;
+                        }
                         break;
 
                     case Input.Keys.DOWN :
                     case Input.Keys.S :
-                        o_direction = Direction.DOWN;
+                        
+                        if ( o_grid.getCurrentDirection() != Direction.UP ) {
+                            o_direction = Direction.DOWN;
+                        }
                         break;
 
                     case Input.Keys.UP :
                     case Input.Keys.W :
-                        o_direction = Direction.UP;
+                        
+                        if ( o_grid.getCurrentDirection() != Direction.DOWN ) {
+                            o_direction = Direction.UP;
+                        }
                         break;
                 }
                 return true;

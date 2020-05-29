@@ -16,7 +16,7 @@ public class GridManager {
     public int n_grid_size;
 
     public GridManager() {
-
+                
         o_snake = new Snake();
         o_pellet = new Pellet();
         n_grid_size = 14;
@@ -27,9 +27,9 @@ public class GridManager {
             for ( int j = 0; j < 15; j++ ) {
 
                 if ( ( i + j ) % 2 == 0 ) {
-                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_tile_b ) );
+                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_screen.o_tile_a ) );
                 } else {
-                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_tile_a ) );
+                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_screen.o_tile_b ) );
                 }
             }
         }
@@ -49,6 +49,10 @@ public class GridManager {
         if ( b_expand ) {
             o_pellet.update( o_grid, o_snake.o_cells );
         }
+    }
+    
+    public Direction getCurrentDirection() {
+        return o_snake.o_previous_direction;
     }
     
     /**

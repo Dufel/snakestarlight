@@ -9,7 +9,7 @@ public class Snake {
 
     public Queue<Cell> o_cells;
     
-    private Direction o_prev_direction;
+    public Direction o_prev_direction;
 
     public Snake() {
         
@@ -18,9 +18,9 @@ public class Snake {
         // Starting positions
         o_prev_direction = Direction.RIGHT;
         
-        o_cells.addFirst( new Cell( 2, 7, AssetManager.o_manager.o_horse_head ) );
-        o_cells.addLast( new Cell( 1, 7, AssetManager.o_manager.o_horse_body ) );
-        o_cells.addLast( new Cell( 0, 7, AssetManager.o_manager.o_horse_tail ) );
+        o_cells.addFirst( new Cell( 2, 7, AssetManager.o_manager.o_snake.o_snake_head_right ) );
+        o_cells.addLast( new Cell( 1, 7, AssetManager.o_manager.o_snake.o_snake_body_horizontal ) );
+        o_cells.addLast( new Cell( 0, 7, AssetManager.o_manager.o_snake.o_snake_tail_right ) );
     
     }
 
@@ -34,24 +34,24 @@ public class Snake {
             case UP :
                 
                 o_new_head.n_row++;
+                o_new_head.setTexture( AssetManager.o_manager.o_snake.o_snake_head_up );
                 
                 switch ( o_prev_direction ) {
                     
                     // Set texture for the old head
                     case UP : 
                         
-                        break;
-                        
-                    case DOWN :
-                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_vertical );
                         break;
                         
                     case LEFT :
                         
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_top_right );
                         break;
                         
                     case RIGHT : 
                         
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_top_left );
                         break;
                     
                 }
@@ -60,10 +60,24 @@ public class Snake {
             case DOWN : 
                 
                 o_new_head.n_row--;
+                o_new_head.setTexture( AssetManager.o_manager.o_snake.o_snake_head_down );
                 
                 switch ( o_prev_direction ) {
                     
-                    
+                    case DOWN : 
+                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_vertical );
+                        break;
+                        
+                    case LEFT :
+                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_bottom_right );
+                        break;
+                        
+                    case RIGHT :
+                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_bottom_left );
+                        break;
                     
                 }
                 break;
@@ -71,10 +85,24 @@ public class Snake {
             case LEFT :
                 
                 o_new_head.n_col--;
+                o_new_head.setTexture( AssetManager.o_manager.o_snake.o_snake_head_left );
                 
                 switch ( o_prev_direction ) {
                     
-                    
+                    case UP :
+                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_bottom_left );
+                        break;
+                        
+                    case DOWN :
+                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_top_left );
+                        break;
+                        
+                    case LEFT :
+                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_horizontal );
+                        break;
                     
                 }
                 break;
@@ -82,10 +110,24 @@ public class Snake {
             case RIGHT :
                 
                 o_new_head.n_col++;
+                o_new_head.setTexture( AssetManager.o_manager.o_snake.o_snake_head_right );
                 
                 switch ( o_prev_direction ) {
                     
-                    
+                    case UP :
+                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_bottom_right );
+                        break;
+                        
+                    case DOWN :
+                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_top_right );
+                        break;
+                        
+                    case RIGHT :
+                        
+                        o_head.setTexture( AssetManager.o_manager.o_snake.o_snake_body_horizontal );
+                        break;
                     
                 }
                 break;
@@ -94,7 +136,10 @@ public class Snake {
         o_cells.addFirst( o_new_head );
         
         if ( !vb_expand ) {
+            
             o_cells.removeLast();
+            
+            
         }
 
     }
