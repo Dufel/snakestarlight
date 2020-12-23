@@ -7,15 +7,12 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.dufel.snakes.util.Constants;
-import com.dufel.snakes.util.Direction;
-import com.dufel.snakes.util.GridManager;
 
 /**
- *
+ * The display shown when the snake hits a wall or their own body.
  */
 public class GameOverScreen extends ScreenAdapter {
     

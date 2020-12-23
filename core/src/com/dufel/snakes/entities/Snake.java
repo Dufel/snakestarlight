@@ -17,7 +17,7 @@ public class Snake {
         
         // Starting positions
         o_prev_direction = Direction.RIGHT;
-        
+                
         o_cells.addFirst( new Cell( 2, 7, AssetManager.o_manager.o_snake.o_snake_head_right ) );
         o_cells.addLast( new Cell( 1, 7, AssetManager.o_manager.o_snake.o_snake_body_horizontal ) );
         o_cells.addLast( new Cell( 0, 7, AssetManager.o_manager.o_snake.o_snake_tail_right ) );
@@ -138,8 +138,6 @@ public class Snake {
         if ( !vb_expand ) {
             
             o_cells.removeLast();
-            
-            
         }
 
     }
@@ -159,7 +157,7 @@ public class Snake {
 
         o_cells.addFirst( o_head );
         o_cells.addLast( o_tail );
-    }
+    }        
     
     public boolean collidesWith( Cell o_cell ) {
         

@@ -27,8 +27,11 @@ public class GameScreen extends ScreenAdapter {
     long l_start_time;
     Direction o_direction;
     
+    int n_score;
+    
     public GameScreen( Game vo_game ) {
         o_game = vo_game;
+        n_score = 3;
     }
 
     @Override
@@ -102,13 +105,15 @@ public class GameScreen extends ScreenAdapter {
             
             // Do a discreet update                                    
             o_grid.update( o_direction );
-            
+            n_score = o_grid.o_snake.o_cells.size;
         } 
         
         // Update for animation purposes
         if ( o_grid.checkForGameOver() ) {
             o_game.setScreen( new GameOverScreen( o_game ) );
         }
+        
+        o_grid.render( o_batch );
         
     }
 

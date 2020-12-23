@@ -52,7 +52,7 @@ public class GridManager {
     }
     
     public Direction getCurrentDirection() {
-        return o_snake.o_previous_direction;
+        return o_snake.o_prev_direction;
     }
     
     /**
