@@ -1,0 +1,125 @@
+
+snake.png
+size: 1024, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+pellet
+  rotate: false
+  xy: 64, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_body_bottom_left
+  rotate: false
+  xy: 808, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_body_bottom_right
+  rotate: false
+  xy: 560, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_body_h
+  rotate: false
+  xy: 126, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_body_top_left
+  rotate: false
+  xy: 498, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_body_top_right
+  rotate: false
+  xy: 312, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_body_v
+  rotate: false
+  xy: 870, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_head_d
+  rotate: false
+  xy: 374, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_head_l
+  rotate: false
+  xy: 250, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_head_r
+  rotate: false
+  xy: 2, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_head_u
+  rotate: false
+  xy: 746, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_tail_d
+  rotate: false
+  xy: 684, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_tail_l
+  rotate: false
+  xy: 622, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_tail_r
+  rotate: false
+  xy: 436, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+snake_tail_u
+  rotate: false
+  xy: 188, 2
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+tile_a
+  rotate: false
+  xy: 964, 32
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+tile_b
+  rotate: false
+  xy: 932, 32
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
