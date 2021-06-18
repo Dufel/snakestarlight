@@ -27,9 +27,9 @@ public class GridManager {
             for ( int j = 0; j < 15; j++ ) {
 
                 if ( ( i + j ) % 2 == 0 ) {
-                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_screen.o_tile_a ) );
+                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_screen.o_tile_a, Direction.NONE ) );
                 } else {
-                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_screen.o_tile_b ) );
+                    o_grid.add( new Cell( j, i, AssetManager.o_manager.o_screen.o_tile_b, Direction.NONE ) );
                 }
             }
         }
@@ -52,7 +52,7 @@ public class GridManager {
     }
     
     public Direction getCurrentDirection() {
-        return o_snake.o_prev_direction;
+        return o_snake.o_cells.first().getDirection();
     }
     
     /**
@@ -61,19 +61,26 @@ public class GridManager {
      */
     public boolean checkForGameOver() {
         
-        Cell o_head = o_snake.o_cells.removeFirst();
+        Cell o_head = o_snake.o_cells.first();
         
         // Check if snake is beyond boundaries of the map
         if ( o_head.n_col < 0 || o_head.n_row < 0 || o_head.n_col > n_grid_size || o_head.n_row > n_grid_size ) {
         
             return true;
-        
         } 
-        
+
+        // Check if snake head has intersected with any cells of its body
+        // Head is guaranteed to be first cell in the queue
+        boolean b_first = true;
         for ( Cell o_cell : o_snake.o_cells ) {
-            
+
             if ( o_head.n_col == o_cell.n_col && o_head.n_row == o_cell.n_row ) {
-                return true;
+
+                if ( b_first ) {
+                    b_first = false;
+                } else {
+                    return true;
+                }
             }                
         }
         

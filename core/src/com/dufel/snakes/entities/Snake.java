@@ -8,27 +8,27 @@ import com.dufel.snakes.util.Direction;
 public class Snake {
 
     public Queue<Cell> o_cells;
-    
-    public Direction o_prev_direction;
 
     public Snake() {
         
         o_cells = new Queue<>();
         
         // Starting positions
-        o_prev_direction = Direction.RIGHT;
-                
-        o_cells.addFirst( new Cell( 2, 7, AssetManager.o_manager.o_snake.o_snake_head_right ) );
-        o_cells.addLast( new Cell( 1, 7, AssetManager.o_manager.o_snake.o_snake_body_horizontal ) );
-        o_cells.addLast( new Cell( 0, 7, AssetManager.o_manager.o_snake.o_snake_tail_right ) );
-    
+        o_cells.addFirst( new Cell( 2, 7, AssetManager.o_manager.o_snake.o_snake_head_right, Direction.RIGHT ) );
+        o_cells.addLast( new Cell( 1, 7, AssetManager.o_manager.o_snake.o_snake_body_horizontal, Direction.RIGHT ) );
+        o_cells.addLast( new Cell( 0, 7, AssetManager.o_manager.o_snake.o_snake_tail_right, Direction.RIGHT ) );
     }
 
     public void update( Direction vo_direction, boolean vb_expand ) {
         
         Cell o_head = o_cells.first();
         
-        Cell o_new_head = new Cell( o_head.n_row, o_head.n_col );
+        Cell o_new_head = new Cell( o_head.n_col, o_head.n_row );
+        o_new_head.setDirection( vo_direction );
+
+        // Update the cell head based on the direction it's heading towards in this new step,
+        // and the cell body that was previously the head based on the previous direction
+        Direction o_prev_direction = o_head.getDirection();
         switch ( vo_direction ) {
             
             case UP :
@@ -138,25 +138,36 @@ public class Snake {
         if ( !vb_expand ) {
             
             o_cells.removeLast();
-        }
 
+            Cell o_new_tail = o_cells.last();
+            Cell o_two_ahead = o_cells.get( o_cells.size - 2 );
+
+            // Update the new tail's texture based on the direction the cell was previously pointing
+            switch ( o_two_ahead.getDirection() ) {
+
+                case RIGHT:
+                    o_new_tail.setTexture( AssetManager.o_manager.o_snake.o_snake_tail_right );
+                    break;
+                case LEFT:
+                    o_new_tail.setTexture( AssetManager.o_manager.o_snake.o_snake_tail_left );
+                    break;
+                case UP:
+                    o_new_tail.setTexture( AssetManager.o_manager.o_snake.o_snake_tail_up );
+                    break;
+                case DOWN:
+                    o_new_tail.setTexture( AssetManager.o_manager.o_snake.o_snake_tail_down );
+                    break;
+            }
+        }
     }
 
     public void render( SpriteBatch vo_batch ) {
-
-        Cell o_head = o_cells.removeFirst();
-        Cell o_tail = o_cells.removeLast();
-
-        o_head.render( vo_batch );
-        o_tail.render( vo_batch );
 
         // Draw rest of the body here, excluding head and tail if necessary
         for ( Cell o_cell : o_cells ) {
             o_cell.render( vo_batch );
         }
 
-        o_cells.addFirst( o_head );
-        o_cells.addLast( o_tail );
     }        
     
     public boolean collidesWith( Cell o_cell ) {

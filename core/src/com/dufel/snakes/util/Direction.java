@@ -5,6 +5,5 @@ package com.dufel.snakes.util;
  */
 public enum Direction {
     
-    LEFT, RIGHT, DOWN, UP;
-    
+    LEFT, RIGHT, DOWN, UP, NONE;
 }

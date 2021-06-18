@@ -15,6 +15,7 @@ public class Pellet {
     
     
     public Pellet() {
+        o_cell = new Cell( 2, 5 );
         o_rand = new Random();
         o_choices = new Array<>( 30 );
     }
@@ -32,13 +33,13 @@ public class Pellet {
             o_choices.removeValue( o_it.next(), false );
         }
         
-        o_cell = o_choices.random().clone();
+        o_cell = o_choices.random();
         
         o_choices.clear();
         
     }
 
     public void render( SpriteBatch vo_batch ) {
-        o_cell.render( vo_batch, AssetManager.o_manager.o_tile_a );
+        o_cell.render( vo_batch, AssetManager.o_manager.o_screen.o_pellet );
     }
 }
