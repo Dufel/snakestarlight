@@ -36,7 +36,6 @@ public class Pellet {
         o_cell = o_choices.random();
         
         o_choices.clear();
-        
     }
 
     public void render( SpriteBatch vo_batch ) {

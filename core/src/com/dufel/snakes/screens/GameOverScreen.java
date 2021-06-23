@@ -6,7 +6,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.dufel.snakes.util.Constants;
@@ -20,6 +23,7 @@ public class GameOverScreen extends ScreenAdapter {
     Game o_game;
     Viewport o_viewport;
     SpriteBatch o_batch;
+    Stage io_stage;
     
     public GameOverScreen( Game vo_game ) {
         o_game = vo_game;
@@ -33,6 +37,16 @@ public class GameOverScreen extends ScreenAdapter {
         o_viewport = new FitViewport( Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, o_camera );
 
         o_viewport.apply( true );
+
+        io_stage = new Stage( o_viewport, o_batch );
+
+        TextButton.TextButtonStyle o_style = new TextButton.TextButtonStyle();
+        o_style.font = new BitmapFont();
+        o_style.font.getData().scale( 20f / Constants.WORLD_WIDTH );
+        TextButton o_button = new TextButton( "R to Restart", o_style );
+        o_button.setSize( Constants.WORLD_WIDTH / 20f, Constants.WORLD_HEIGHT / 20f );
+
+        io_stage.addActor( o_button );
         
         Gdx.input.setInputProcessor( new InputAdapter() { 
         
@@ -60,7 +74,9 @@ public class GameOverScreen extends ScreenAdapter {
 
     @Override
     public void render( float delta ) {
+
         super.render( delta );
+        io_stage.draw();
     }
 
     @Override

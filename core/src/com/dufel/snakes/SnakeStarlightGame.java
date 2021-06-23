@@ -7,11 +7,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.dufel.snakes.screens.GameScreen;
+import com.dufel.snakes.screens.MainMenuScreen;
 
 public class SnakeStarlightGame extends Game {
 	
 	@Override
 	public void create() {
-		setScreen( new GameScreen( this ) );
+		setScreen( new MainMenuScreen( this ) );
 	}
 }
