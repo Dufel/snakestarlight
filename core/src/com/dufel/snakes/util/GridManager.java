@@ -6,6 +6,10 @@ import com.dufel.snakes.entities.Cell;
 import com.dufel.snakes.entities.Pellet;
 import com.dufel.snakes.entities.Snake;
 
+/**
+ * Responsible for maintaining the state of the grid. 
+ * This updates each cell of the board when necessary, dependent on the position of the snake and pellet entities.
+ */
 public class GridManager {
 
     public Snake o_snake;

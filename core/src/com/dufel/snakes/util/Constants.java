@@ -6,5 +6,6 @@ public class Constants {
     public static final float WORLD_HEIGHT = 20;
 
     public static final int MARGIN = 2;
-    public static final double DELTA_FRAME = .35;
+    public static final double DELTA_EASY = .55;
+    public static final double DELTA_HARD = .35;
 }

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -19,12 +18,14 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.dufel.snakes.util.Config;
 import com.dufel.snakes.util.Constants;
 import com.dufel.snakes.util.Direction;
 import com.dufel.snakes.util.GridManager;
 
 public class GameScreen extends ScreenAdapter {
 
+    Config o_config;
     Game o_game;
     Viewport o_viewport;
     GridManager o_grid;
@@ -39,7 +40,9 @@ public class GameScreen extends ScreenAdapter {
     int n_score;
     boolean b_pause;
 
-    public GameScreen( Game vo_game ) {
+    public GameScreen( Game vo_game, Config vo_config ) {
+        
+        o_config = vo_config;
         o_game = vo_game;
         n_score = 3;
         b_pause = false;
@@ -54,8 +57,8 @@ public class GameScreen extends ScreenAdapter {
 
         l_start_time = TimeUtils.nanoTime();
         o_direction = Direction.RIGHT;
-        o_renderer = new ShapeRenderer();
-
+        o_renderer = new ShapeRenderer();              
+        
         FreeTypeFontGenerator.setMaxTextureSize( FreeTypeFontGenerator.NO_MAXIMUM );
         FreeTypeFontGenerator o_gen = new FreeTypeFontGenerator( Gdx.files.internal( "corbelb.ttf" ) );
         FreeTypeFontGenerator.FreeTypeFontParameter o_param = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -126,7 +129,7 @@ public class GameScreen extends ScreenAdapter {
         // Need to determine when this method is called at a certain interval,
         // so as to call underlying updates / render at discrete steps
         long l_elapsed_time = TimeUtils.timeSinceNanos( l_start_time );
-        if ( MathUtils.nanoToSec * l_elapsed_time >= Constants.DELTA_FRAME ) {
+        if ( MathUtils.nanoToSec * l_elapsed_time >= o_config.DELTA ) {
             
             // Do a discreet update                                    
             o_grid.update( o_direction );
@@ -147,8 +150,8 @@ public class GameScreen extends ScreenAdapter {
         if ( !b_pause ) {
 
             update( delta );
-        }
-
+        }                
+        
         Gdx.gl.glClearColor( 1, 1, 1, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT );
 
@@ -162,7 +165,7 @@ public class GameScreen extends ScreenAdapter {
         if ( b_pause ) {
 
             o_batch.end();
-
+            
             o_renderer.setProjectionMatrix( o_viewport.getCamera().combined );
             o_viewport.apply();
 

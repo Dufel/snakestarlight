@@ -18,18 +18,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.dufel.snakes.util.Config;
 import com.dufel.snakes.util.Constants;
-import com.sun.org.apache.bcel.internal.Const;
 
 public class MainMenuScreen extends ScreenAdapter {
 
+    Config o_config;
     Game o_game;
     Stage o_stage;
     SpriteBatch o_batch;
     Viewport o_viewport;
 
     public MainMenuScreen( Game vo_game ) {
+        
         o_game = vo_game;
+        o_config = new Config();
+        o_config.DELTA = Constants.DELTA_EASY;
 
         o_batch = new SpriteBatch();
         o_viewport = new FitViewport( Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, new OrthographicCamera() );
@@ -56,7 +60,7 @@ public class MainMenuScreen extends ScreenAdapter {
         o_param.size = 16;
         o_param.color = Color.WHITE;
         o_font = o_gen.generateFont( o_param );
-        o_font.setUseIntegerPositions( false );
+        o_font.setUseIntegerPositions( false );        
         o_font.getRegion().getTexture().setFilter( Texture.TextureFilter.Linear, Texture.TextureFilter.Linear );
         //o_font.getData().setScale( 1f / Constants.WORLD_HEIGHT );
 
@@ -72,7 +76,7 @@ public class MainMenuScreen extends ScreenAdapter {
         o_button.addListener( new ClickListener() {
             @Override
             public void clicked( InputEvent event, float x, float y ) {
-                o_game.setScreen( new GameScreen( o_game ) );
+                o_game.setScreen( new GameScreen( o_game, o_config ) );
             }
         } );
 

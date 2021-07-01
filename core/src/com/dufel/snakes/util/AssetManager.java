@@ -1,8 +1,10 @@
 package com.dufel.snakes.util;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.audio.Sound;
 
 public class AssetManager {
 
@@ -18,7 +20,6 @@ public class AssetManager {
         o_atlas = new TextureAtlas( "snake.atlas" );
         o_screen = new ScreenManager();
         o_snake = new SnakeManager();
-        
     }
 
     public class ScreenManager {
@@ -32,6 +33,18 @@ public class AssetManager {
             o_tile_a = o_atlas.findRegion( "tile_a" );
             o_tile_b = o_atlas.findRegion( "tile_b" );
             o_pellet = o_atlas.findRegion( "pellet" );
+        }
+    }
+    
+    public class SoundManager {
+        
+        public final Sound o_consume;
+        public final Music o_theme;
+        
+        public SoundManager() {
+            
+            o_consume = Gdx.audio.newSound( Gdx.files.internal( "consume.wav" ) );
+            o_theme = Gdx.audio.newMusic( Gdx.files.internal( "theme.mp3" ) );
         }
     }
     

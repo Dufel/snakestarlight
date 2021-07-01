@@ -56,7 +56,7 @@ public class GameOverScreen extends ScreenAdapter {
                 switch ( keycode ) {
 
                     case Input.Keys.R :
-                        o_game.setScreen( new GameScreen( o_game ) );
+                        o_game.setScreen( new MainMenuScreen( o_game ) );
                         break;
                         
                     
